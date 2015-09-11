@@ -14,27 +14,37 @@ and open the template in the editor.
         <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     </head>
     <body>
+        <!-- the nav menu for the graph -->
         <div id ="GraphHeader">
+            <!-- the drop down select for the graph -->
             <div id ="DropDown">
                 <h3>Select Data &#9660</h3>
                 <div id ="Selector">
+                    <!-- options are inserted here as list items -->
                     <ul id = "Options">
                     
                     </ul>
                 </div>
             </div>
+            <!-- the title of the graph -->
             <div id ="Title">
                 
             </div>
         </div>
+        <!-- the grpah itself -->
         <div id = "Graph">
             
         </div>
     </body>
     
     <script>
+        //determines which graph is currently active
         var activeDataSet = 0;
+       
+        // determines the height of the graph
         var height = 200;
+        
+        // function to populate the dropdown menu
         var fillOptions = function (options) {
             var selector = document.getElementById("Selector");
             var content = "";
@@ -50,10 +60,12 @@ and open the template in the editor.
             
         }
         
+        // funciton to chance the title of the graph
         var refreshTitle = function () {
            document.getElementById("Title").innerHTML = "<h1>" + dataNames(data)[activeDataSet] + "</h1>"; 
         }
         
+        // function to draw the graph itself
         var drawGraph = function (dataSet, graph) {
             graph.innerHTML = "";
             var offset = 5;
@@ -68,6 +80,7 @@ and open the template in the editor.
             }
         }
         
+        // function to generate an array of the names of the graph's
         var dataNames = function (data) {
             var dataNames = [];
             for (var i = 0; i < data.length; i++) {
@@ -76,6 +89,7 @@ and open the template in the editor.
             return dataNames;
         }
         
+        // draws the graph
         fillOptions(dataNames(data));
         var graph = document.getElementById("Graph");
         drawGraph(data[activeDataSet], graph);
