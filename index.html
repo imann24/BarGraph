@@ -11,11 +11,12 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="scripts/data.js"></script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div id ="GraphHeader">
             <div id ="DropDown">
-                <h3>Select a data set</h3>
+                <h3>Select Data &#9660</h3>
                 <div id ="Selector">
                     <ul id = "Options">
                     
@@ -55,13 +56,14 @@ and open the template in the editor.
         
         var drawGraph = function (dataSet, graph) {
             graph.innerHTML = "";
+            var offset = 5;
+            var heightModifier = 2;
             for (var i = 0; i < dataSet.data.length; i++) {
-                var topMargin = (height - dataSet.data[i].value);
-                alert(topMargin);
-                graph.innerHTML += "<div class = 'Bar' style='height:" + dataSet.data[i].value +
-                          "px; margin-top:" + topMargin + "px;' ><div class = 'Value' style = 'display:none;'>" + 
+                var topMargin = (height - dataSet.data[i].value * heightModifier);
+                graph.innerHTML += "<div class = 'Bar' style='height:" + (dataSet.data[i].value * heightModifier) +
+                          "px; margin-top:" + topMargin + "px;' ><div class = 'Value'>" + 
                         dataSet.data[i].value + "</div>\n\
-                        <div class = 'Year' style = 'margin-top:" +  dataSet.data[i].value + "px';>" + 
+                        <div class = 'Year' style = 'margin-top:" +  (dataSet.data[i].value * heightModifier + offset) + "px';>" + 
                         dataSet.data[i].label + "</div></div>"
             }
         }
