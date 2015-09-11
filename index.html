@@ -33,7 +33,7 @@ and open the template in the editor.
     
     <script>
         var activeDataSet = 0;
-        
+        var height = 200;
         var fillOptions = function (options) {
             var selector = document.getElementById("Selector");
             var content = "";
@@ -54,10 +54,15 @@ and open the template in the editor.
         }
         
         var drawGraph = function (dataSet, graph) {
-           
+            graph.innerHTML = "";
             for (var i = 0; i < dataSet.data.length; i++) {
-                graph.innerHTML += "<div id = 'Bar' style='height:" + dataSet.data[i].value +
-                          "px'></div>"
+                var topMargin = (height - dataSet.data[i].value);
+                alert(topMargin);
+                graph.innerHTML += "<div class = 'Bar' style='height:" + dataSet.data[i].value +
+                          "px; margin-top:" + topMargin + "px;' ><div class = 'Value' style = 'display:none;'>" + 
+                        dataSet.data[i].value + "</div>\n\
+                        <div class = 'Year' style = 'margin-top:" +  dataSet.data[i].value + "px';>" + 
+                        dataSet.data[i].label + "</div></div>"
             }
         }
         

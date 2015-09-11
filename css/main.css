@@ -46,14 +46,23 @@ and open the template in the editor.
     float: right
 }
 
-#Bar {
+.Bar {
     width: 2em;
     background: black;
     float: left;
-    margin: 0.25em;
+    margin: 0.5em;
+}
+
+.Bar:hover {
+    background-color: #afafaf;
+}
+
+.Bar:hover > .Value {
+    display: block;
 }
 
 #Graph {
+    padding-left: 30em;
     width: 100%;
     height: 40em;
 }
