@@ -10,12 +10,12 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="scripts/data.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
         <div id ="GraphHeader">
-            <!-- Guide for dropdown menu: http://inspirationalpixels.com/tutorials/creating-a-dropdown-menu-with-html-css -->
             <div id ="DropDown">
-                <h1>Select a data set</h1>
+                <h3>Select a data set</h3>
                 <div id ="Selector">
                     <ul id = "Options">
                     
@@ -26,24 +26,51 @@ and open the template in the editor.
                 
             </div>
         </div>
-        <canvas id = "Graph">
+        <div id = "Graph">
             
-        </canvas>
+        </div>
     </body>
     
     <script>
+        var activeDataSet = 0;
+        
         var fillOptions = function (options) {
             var selector = document.getElementById("Selector");
             var content = "";
             for (var i = 0; i < options.length; i++) {
-                content += "<ul>" + options[i] + "</ul>";
+                content += "<ul onclick ='activeDataSet =" + i + ";\n\
+                                refreshTitle();\n\
+                                drawGraph(data[activeDataSet], graph);'>" +
+                        options[i] + "</ul>";
             }
             selector.innerHTML = content;
             
-            document.getElementById("Title").innerHTML = "<h1>" + dataNames[0] + "</h1>";
+            refreshTitle();
             
         }
         
-        fillOptions(dataNames);
+        var refreshTitle = function () {
+           document.getElementById("Title").innerHTML = "<h1>" + dataNames(data)[activeDataSet] + "</h1>"; 
+        }
+        
+        var drawGraph = function (dataSet, graph) {
+           
+            for (var i = 0; i < dataSet.data.length; i++) {
+                graph.innerHTML += "<div id = 'Bar' style='height:" + dataSet.data[i].value +
+                          "px'></div>"
+            }
+        }
+        
+        var dataNames = function (data) {
+            var dataNames = [];
+            for (var i = 0; i < data.length; i++) {
+                dataNames.push(data[i].name);
+            }
+            return dataNames;
+        }
+        
+        fillOptions(dataNames(data));
+        var graph = document.getElementById("Graph");
+        drawGraph(data[activeDataSet], graph);
     </script>
 </html>

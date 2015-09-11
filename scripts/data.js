@@ -76,12 +76,8 @@ function initializeData()
     data.push(series1);
     data.push(series2);
     data.push(series3);
-    for (var i = 0; i < data.length; i++) {
-        dataNames.push(data[i].name);
-    }
 }
 
 var data = [];
-var dataNames = [];
 initializeData();
 
