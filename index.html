@@ -6,11 +6,44 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Bar Graph</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="scripts/data.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id ="GraphHeader">
+            <!-- Guide for dropdown menu: http://inspirationalpixels.com/tutorials/creating-a-dropdown-menu-with-html-css -->
+            <div id ="DropDown">
+                <h1>Select a data set</h1>
+                <div id ="Selector">
+                    <ul id = "Options">
+                    
+                    </ul>
+                </div>
+            </div>
+            <div id ="Title">
+                
+            </div>
+        </div>
+        <canvas id = "Graph">
+            
+        </canvas>
     </body>
+    
+    <script>
+        var fillOptions = function (options) {
+            var selector = document.getElementById("Selector");
+            var content = "";
+            for (var i = 0; i < options.length; i++) {
+                content += "<ul>" + options[i] + "</ul>";
+            }
+            selector.innerHTML = content;
+            
+            document.getElementById("Title").innerHTML = "<h1>" + dataNames[0] + "</h1>";
+            
+        }
+        
+        fillOptions(dataNames);
+    </script>
 </html>
